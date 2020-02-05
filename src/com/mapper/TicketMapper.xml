@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 代替StudentDao和DBHelperDao，sql映射 -->
+<!-- namespace 声明mapper对象映射路径 -->
+<mapper namespace="com.mapper.ITicketMapper">
+<insert id="save" parameterType="com.pojo.Ticket" >
+insert into ticket(t_name,t_time,t_address,t_num,t_price,t_fname,type_id) values(#{t_name},#{t_time},#{t_address},#{t_num},#{t_price},#{t_fname},#{type_id})
+</insert>
+
+<update id="Update" parameterType="com.pojo.Ticket">
+update ticket set t_name=#{t_name},t_time=#{t_time},t_address=#{t_address},t_num=#{t_num},t_price=#{t_price},t_fname=#{t_fname},type_id=#{type_id} where t_id=#{t_id}
+</update>
+
+<delete id="delById" parameterType="Integer" >
+delete from ticket where t_id=#{t_id}
+</delete>
+
+<select id="findById" parameterType="Integer" resultType="com.pojo.Ticket">
+select * from tictype where t_id=#{t_id}
+</select>
+
+<select id="findPageAll"  parameterType="com.pojo.PageBean" resultType="com.pojo.Ticket">
+select * from tictype limit #{page},#{rows}
+</select>
+
+<select id="findMaxRows" resultType="Integer">
+select count(*) from tictype
+</select>
+
+<select id="doint" resultType="com.pojo.Typess">
+select * from typess
+</select>
+
+<select id="findBytype" resultType="com.pojo.Ticket">
+select from ticket where type_id=#{type_id}
+</select>
+</mapper>
